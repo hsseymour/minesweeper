@@ -5,7 +5,6 @@ import { ChooseDifficulty } from "./difficulty";
 
 export const Main = () => { 
 
-    // difficulty is updated during ChooseDifficulty() - update creates board
     const [difficulty, SetDifficulty] = useState(false);
 
     const UpdateDifficulty = (difficulty) => {

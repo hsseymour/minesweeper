@@ -13,13 +13,11 @@ export const ChooseDifficulty = (props) => {
     });
 
     return (
-        <>
-            <div id="selectDifficultyDiv">
-                <h1>Select difficulty</h1>
-                <button value='e'>Easy</button>
-                <button value='m'>Medium</button>
-                <button value='h'>Hard</button>
-            </div>
-        </>
+        <div id="selectDifficultyDiv">
+            <h1>Select difficulty</h1>
+            <button value='e'>Easy</button>
+            <button value='m'>Medium</button>
+            <button value='h'>Hard</button>
+        </div>
     );
 }
