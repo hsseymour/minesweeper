@@ -64,8 +64,15 @@ export const CreateBoard = (props) => {
             cell.addEventListener('click', () => {
                 if (document.getElementById(id).innerHTML === '-') {
                     console.debug(id + " " + boardArray[row][col] + " " + neighbours);
-                    if (!boardArray[row][col]) { document.getElementById(id).innerHTML = neighbours; }
-                    else { document.getElementById(id).innerHTML = ":("; }
+                    if (!boardArray[row][col]) { 
+                        document.getElementById(id).innerHTML = neighbours;
+                        console.debug(document.getElementById(id));
+                        document.getElementById(id).classList.add('neighbours-' + neighbours.toString(), "revealedCell");
+                    }
+                    else { 
+                        document.getElementById(id).innerHTML = ":(";
+                        document.getElementById(id).classList.add('foundMine');
+                     }
                 }
             });
             cell.addEventListener('contextmenu', (e) => {

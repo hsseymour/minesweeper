@@ -12,9 +12,9 @@ header h1 {
     background-color: rgba(255,255,255,1);
     width: 100vw;
     height: auto;
-    padding: 20px;
-    margin: auto;
-    max-width: 800px;
+    padding: 20px 0px;
+    margin: 40px auto;
+    max-width: 600px;
 }
 
 #selectDifficultyDiv h3 {
@@ -38,15 +38,55 @@ header h1 {
 
 #createBoardDiv button {
     width: 2.5vw;
+    min-width: 20px;
     height: 2.5vw;
+    min-height: 20px;
     font-size: 1.5vw;
     text-align: center;
 
     border: 1px solid black;
     border-radius: 0px;
-    background-color: rgba(0,0,0,0.1);
+    background-color: rgba(200,200,200,1);
 }
 
 #timerDiv p {
     text-align: center;
+}
+
+.revealedCell {
+    background-color: rgba(255,255,255,1) !important;
+}
+
+.foundMine {
+    background-color: rgba(200,0,0,1) !important;
+}
+
+.neighbours-0 {
+    color: rgba(255,255,255,0) !important;
+    border: none !important;
+}
+
+.neighbours-1 {
+    color: rgba(100,200,255,1);
+}
+.neighbours-2 {
+    color: rgba(0,255,0,1);
+}
+.neighbours-3 {
+    color: rgba(255,0,0,1);
+}
+.neighbours-4 {
+    color: rgba(0,0,255,1);
+}
+.neighbours-5 {
+    color: rgba(100,75,0,1);
+}
+.neighbours-6 {
+    color: rgba(0,100,100,1);
+}
+.neighbours-7 {
+    color: rgba(0,0,0,1);
+}
+.neighbours-8 {
+    color: rgba(100,100,100,1);
 }
