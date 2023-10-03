@@ -7,14 +7,13 @@ export const ChooseDifficulty = (props) => {
             element.addEventListener('click', () => { 
                 let difficulty = element.value;
                 props.setdifficulty(difficulty);
-                //document.getElementById('selectDifficultyDiv').remove();
             });
         });
     });
 
     return (
         <div id="selectDifficultyDiv">
-            <h1>Select difficulty</h1>
+            <h3>Select difficulty</h3>
             <button value='e'>Easy</button>
             <button value='m'>Medium</button>
             <button value='h'>Hard</button>

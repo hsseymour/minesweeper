@@ -1,4 +1,5 @@
-import { Random } from "../rsc/funcs";
+import { useEffect } from "react";
+import { Random, CountNeigbours } from "../rsc/funcs";
 
 export const CreateBoard = (props) => { 
 
@@ -49,23 +50,6 @@ export const CreateBoard = (props) => {
         return array;
     }
 
-
-    // let boardRowsArray = new Array(boardrows);
-
-    // for (var i = 0; i < boardRowsArray.length; i++) {
-    //     boardRowsArray[i] = new Array(boardcols);
-    //     boardRowsArray[i].fill(false);
-    //     console.debug(boardRowsArray);
-
-    //     for (let z = 0; z < boardRowsArray[i].length; i++) {
-    //         let rnd = Random(0,1);
-    //         console.debug(rnd + " " + i + " " + z);
-
-    //         if (rnd === 1) { boardRowsArray[i][z] = true } else { boardRowsArray[i][z] = false }
-    //     //    (rnd === 1 ? boardRowsArray[i][z] = true : boardRowsArray[i][z] = false);
-    //     }
-    // }
-
     let boardArray = CreateBoardArray(boardrows, boardcols);
     console.debug(boardArray);
 
@@ -73,47 +57,27 @@ export const CreateBoard = (props) => {
         let col = props.col;
         let row = props.row;
         let id = col + "-" + row;
-        let neighbours = 0;
+        let neighbours = CountNeigbours({col: col, row: row, boardArray: boardArray});
 
-        if (!boardArray[row][col]) {
-            if (row !== 0) {
-                if (boardArray[row-1][col] === true ) { neighbours++; }
-                if (col !== 0) {
-                    if (boardArray[row-1][col-1] === true ) { neighbours++; }
+        useEffect(() => {
+            let cell = document.getElementById(id);
+            cell.addEventListener('click', () => {
+                if (document.getElementById(id).innerHTML === '-') {
+                    console.debug(id + " " + boardArray[row][col] + " " + neighbours);
+                    if (!boardArray[row][col]) { document.getElementById(id).innerHTML = neighbours; }
+                    else { document.getElementById(id).innerHTML = ":("; }
                 }
-                if (col !== boardcols) {
-                    if (boardArray[row-1][col+1] === true ) { neighbours++; }
-                }
-            }
-            //if (row !== boardrows) {
-            if (row < boardrows - 1) {
-                console.debug(row + " " + col + " " + boardrows + " ");
-                console.debug(boardArray[row][col]);
-                console.debug(boardArray[row+1][col]);
-                if (boardArray[row+1][col] === true ) { neighbours++; }
-                if (col !== 0) {
-                    if (boardArray[row+1][col-1] === true ) { neighbours++; }
-                }
-                if (col !== boardcols) {
-                    if (boardArray[row+1][col+1] === true ) { neighbours++; }
-                }
-            }
-            if (col !== 0) {
-                if (boardArray[row][col-1] === true ) { neighbours++; }
-            }
-            if (col !== boardcols) {
-                if (boardArray[row][col+1] === true ) { neighbours++; }
-            }
-        }
-
-        const CellClick = () => {
-            console.debug(id + " " + boardArray[row][col] + " " + neighbours);
-            if (!boardArray[row][col]) { document.getElementById(id).innerHTML = neighbours; }
-            else { document.getElementById(id).innerHTML = ":("; }
-        }
+            });
+            cell.addEventListener('contextmenu', (e) => {
+                e.preventDefault();
+                console.debug("Right click on: " + id);
+                if (document.getElementById(id).innerHTML === '-') { document.getElementById(id).innerHTML = '▸'; }
+                else if (document.getElementById(id).innerHTML === '▸') { document.getElementById(id).innerHTML = '-'; }
+            });
+        });
 
         return (
-            <button id={id} type="button" onClick={() => CellClick()}>-</button>
+            <button id={id} type="button">-</button>
         );
     }
 
@@ -128,7 +92,7 @@ export const CreateBoard = (props) => {
     );
 
     return (
-        <div className="createBoardDiv">
+        <div id="createBoardDiv">
             <table>
                 <tbody>
                     <Rows />

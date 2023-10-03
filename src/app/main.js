@@ -1,7 +1,7 @@
-import { CreateBoard } from "./board";
 import { useState } from "react";
 import { ChooseDifficulty } from "./difficulty";
-
+import { CreateBoard } from "./board";
+import { CreateTimer } from "./timer";
 
 export const Main = () => { 
 
@@ -14,10 +14,17 @@ export const Main = () => {
     return (
         <>
             
-            {!difficulty && <ChooseDifficulty setdifficulty={UpdateDifficulty}/>}
+            <section id="main">
+                <header>
+                    <h1>Minesweeper</h1>
+                </header>
+                
+                {!difficulty && <ChooseDifficulty setdifficulty={UpdateDifficulty}/>}
 
-            {difficulty && <CreateBoard difficulty={difficulty} />}
-           
+                {difficulty && <CreateBoard difficulty={difficulty} />}
+
+                {difficulty && <CreateTimer />}
+            </section>
         </>
     );
 }
