@@ -33,4 +33,34 @@ export const CountNeigbours = ( {row, col, boardArray} ) => {
     }
     return neighbours;
 }
-    
+
+export const CheckNeigbours = ( {col, row, boardArray}) => { 
+    if (row !== 0) {
+        let adjacent = document.getElementById(col + "-" + (row-1));
+        if (adjacent.value === '0') { 
+            adjacent.classList.add('neighbours-0', "revealedCell");
+            CheckNeigbours({col: col, row: row-1, boardArray: boardArray});
+        }
+    }
+    if (col !== 0) {
+        let adjacent = document.getElementById((col-1) + "-" + row);
+        if (adjacent.value === '0') { 
+            adjacent.classList.add('neighbours-0', "revealedCell");
+            CheckNeigbours({col: col, row: row-1, boardArray: boardArray});
+        }
+    }
+    if (row < boardArray.length - 1) {
+        let adjacent = document.getElementById(col + "-" + (row+1));
+        if (adjacent.value === '0') { 
+            adjacent.classList.add('neighbours-0', "revealedCell");
+            CheckNeigbours({col: col, row: row-1, boardArray: boardArray});
+        }
+    }
+    if (col !== boardArray[row].length - 1) {
+        let adjacent = document.getElementById((col+1) + "-" + row);
+        if (adjacent.value === '0') { 
+            adjacent.classList.add('neighbours-0', "revealedCell");
+            CheckNeigbours({col: col, row: row-1, boardArray: boardArray});
+        }
+    }
+}

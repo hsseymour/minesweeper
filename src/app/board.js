@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Random, CountNeigbours } from "../rsc/funcs";
+import { Random, CountNeigbours, CheckNeigbours } from "../rsc/funcs";
 
 export const CreateBoard = (props) => { 
 
@@ -45,7 +45,6 @@ export const CreateBoard = (props) => {
                 }
                 array.push(row);
             }
-            console.debug(mineCount);
         } while (mineCount !== mines);
         return array;
     }
@@ -61,13 +60,17 @@ export const CreateBoard = (props) => {
 
         useEffect(() => {
             let cell = document.getElementById(id);
+            cell.value = neighbours;
             cell.addEventListener('click', () => {
                 if (document.getElementById(id).innerHTML === '-') {
-                    console.debug(id + " " + boardArray[row][col] + " " + neighbours);
                     if (!boardArray[row][col]) { 
                         document.getElementById(id).innerHTML = neighbours;
-                        console.debug(document.getElementById(id));
                         document.getElementById(id).classList.add('neighbours-' + neighbours.toString(), "revealedCell");
+
+                        if (neighbours === 0) {
+                            CheckNeigbours({col: col, row: row, boardArray: boardArray});
+                        }
+
                     }
                     else { 
                         document.getElementById(id).innerHTML = ":(";
