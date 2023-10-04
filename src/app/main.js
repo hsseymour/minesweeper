@@ -11,6 +11,12 @@ export const Main = () => {
         SetDifficulty(difficulty);
     }
 
+    const [isGameOver, SetGameOver] = useState(false);
+
+    const UpdateGameOver = (isGameOver) => {
+        SetGameOver(isGameOver);
+    }
+
     return (
         <>
             
@@ -21,9 +27,12 @@ export const Main = () => {
 
                 {!difficulty && <ChooseDifficulty setdifficulty={UpdateDifficulty}/>}
 
-                {difficulty && <CreateBoard difficulty={difficulty} />}
+                {difficulty && <CreateBoard difficulty={difficulty} setGameOver={UpdateGameOver} />}
 
-                {/*  {difficulty && <CreateTimer />} */}
+                {difficulty && <CreateTimer  />} 
+
+                {isGameOver && <CreateTimer  />} 
+
             </section>
         </>
     );

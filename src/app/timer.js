@@ -11,13 +11,24 @@ export const CreateTimer = () => {
 
     const StartTimer = () => {
         firstTime = new Date().getTime();
-        interval = setInterval(UpdateTimer, 1000);
+        interval = setInterval(UpdateTimer, 1);
     }
 
     const UpdateTimer = () => {
         let newTime = new Date().getTime();
-        let elapsedTime = firstTime - newTime;
-        document.getElementById('').innerHTML = elapsedTime;
+        let elapsedTime = newTime - firstTime;
+
+        let mil = Math.floor(elapsedTime / 1) % 60; 
+        let sec = Math.floor(elapsedTime / 1000) % 60;
+        let min = Math.floor(elapsedTime / 1000 / 60);
+
+        let convertedTime = LeadingZero(min) + ':' + LeadingZero(sec) + ':' + LeadingZero(mil);
+
+        document.getElementById('timer').innerHTML = convertedTime;
+    }
+
+    const LeadingZero = (num) => {
+        return (num < 10 ? "0" : "") + num;
     }
 
     const StopTimer = () => { 
@@ -27,7 +38,7 @@ export const CreateTimer = () => {
 
     const ResetTimer = () => { 
         StopTimer();
-        document.getElementById('').innerHTML = '00:00:00';
+        document.getElementById('timer').innerHTML = '00:00:00';
     }
 
     return (

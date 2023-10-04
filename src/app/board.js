@@ -4,8 +4,8 @@ import { ConvertDifficulty, CreateBoardArray, CountNeigbours, CheckNeigbours } f
 export const CreateBoard = (props) => { 
 
     let boardData = ConvertDifficulty(props.difficulty);
-
     let boardArray = CreateBoardArray(boardData);
+    //let SetGameOver = (isGameOver) => { props.setGameOver(isGameOver); }
 
     const Cell = (props) => {
         let col = props.col;
@@ -28,6 +28,7 @@ export const CreateBoard = (props) => {
                     else { 
                         cell.innerHTML = ":(";
                         cell.classList.add('foundMine');
+                        //SetGameOver(true);
                      }
                 }
             });
