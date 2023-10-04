@@ -4,13 +4,14 @@ import { CreateBoard } from "./board";
 import { CreateTimer } from "./timer";
 import { CreateResetButton } from "./reset";
 import { CreateTest } from "./test";
+import { type } from "@testing-library/user-event/dist/type";
 
 export const Main = () => { 
 
     const [gameState, SetGameState] = useState(0);
 
     const UpdateGameState = (gameState) => {
-        SetGameState(gameState);
+        SetGameState(parseInt(gameState));
     }
 
     return (

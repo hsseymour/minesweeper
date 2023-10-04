@@ -4,11 +4,11 @@ export const Random = (min, max) => {
 
 export const ConvertDifficulty = (difficulty) => {
     switch (difficulty) {
-        case '1':
+        case 1:
             return [9, 9, 10];
-        case '2':
+        case 2:
             return [16, 16, 40];
-        case '3':
+        case 3:
             return [16, 30, 99];
         default:
             break;
@@ -41,6 +41,10 @@ export const CreateBoardArray = (boardData) => {
         }
     } while (mineCount !== boardData[2]);
     return array;
+}
+
+export const PopulateMines = () => { 
+    
 }
 
 export const CountNeigbours = ( {row, col, boardArray} ) => {
