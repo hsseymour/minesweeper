@@ -2,6 +2,47 @@ export const Random = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
 
+export const ConvertDifficulty = (difficulty) => {
+    switch (difficulty) {
+        case 'e':
+            return [9, 9, 10];
+        case 'm':
+            return [16, 16, 40];
+        case 'h':
+            return [16, 30, 99];
+        default:
+            break;
+    }
+}
+
+export const CreateBoardArray = (boardData) => {
+    let rows = boardData[1];
+    let cols = boardData[0];
+    let array, mineCount;
+    do {
+        array = [];
+        mineCount = 0;
+        for (let i = 0; i < rows; i++){
+            let row = [];
+            for (let j = 0; j < cols; j++) {
+                let rnd = Random(1, rows*cols);
+                if (rnd <= boardData[2]) {
+                    if (mineCount < boardData[2]) {
+                        row.push(true);
+                        mineCount++;
+                    } else {
+                        row.push(false);
+                    }
+                } else {
+                    row.push(false);
+                }
+            }
+            array.push(row);
+        }
+    } while (mineCount !== boardData[2]);
+    return array;
+}
+
 export const CountNeigbours = ( {row, col, boardArray} ) => {
     let neighbours = 0;
     if (!boardArray[row][col]) {

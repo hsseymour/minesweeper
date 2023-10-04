@@ -1,56 +1,11 @@
 import { useEffect } from "react";
-import { Random, CountNeigbours, CheckNeigbours } from "../rsc/funcs";
+import { ConvertDifficulty, CreateBoardArray, CountNeigbours, CheckNeigbours } from "../rsc/funcs";
 
 export const CreateBoard = (props) => { 
 
-    let boardcols, boardrows, mines;
+    let boardData = ConvertDifficulty(props.difficulty);
 
-    switch (props.difficulty) {
-        case 'e':
-            boardcols = boardrows = 9;
-            mines = 10;
-            break;
-        case 'm':
-            boardcols = boardrows = 16;
-            mines = 40;
-            break;
-        case 'h':
-            boardcols = 16;
-            boardrows = 30;
-            mines = 99;
-            break;
-        default:
-            break;
-    }
-
-    const CreateBoardArray = (rows, cols) => {
-        let array, mineCount;
-        do {
-            array = [];
-            mineCount = 0;
-            for (let i = 0; i < rows; i++){
-                let row = [];
-                for (let j = 0; j < cols; j++) {
-                    let rnd = Random(1, rows*cols);
-                    if (rnd <= mines) {
-                        if (mineCount < mines) {
-                            row.push(true);
-                            mineCount++;
-                        } else {
-                            row.push(false);
-                        }
-                    } else {
-                        row.push(false);
-                    }
-                }
-                array.push(row);
-            }
-        } while (mineCount !== mines);
-        return array;
-    }
-
-    let boardArray = CreateBoardArray(boardrows, boardcols);
-    console.debug(boardArray);
+    let boardArray = CreateBoardArray(boardData);
 
     const Cell = (props) => {
         let col = props.col;
@@ -62,27 +17,25 @@ export const CreateBoard = (props) => {
             let cell = document.getElementById(id);
             cell.value = neighbours;
             cell.addEventListener('click', () => {
-                if (document.getElementById(id).innerHTML === '-') {
+                if (cell.innerHTML === '-') {
                     if (!boardArray[row][col]) { 
-                        document.getElementById(id).innerHTML = neighbours;
-                        document.getElementById(id).classList.add('neighbours-' + neighbours.toString(), "revealedCell");
-
+                        cell.innerHTML = neighbours;
+                        cell.classList.add('neighbours-' + neighbours.toString(), "revealedCell");
                         if (neighbours === 0) {
                             CheckNeigbours({col: col, row: row, boardArray: boardArray});
                         }
-
                     }
                     else { 
-                        document.getElementById(id).innerHTML = ":(";
-                        document.getElementById(id).classList.add('foundMine');
+                        cell.innerHTML = ":(";
+                        cell.classList.add('foundMine');
                      }
                 }
             });
             cell.addEventListener('contextmenu', (e) => {
                 e.preventDefault();
                 console.debug("Right click on: " + id);
-                if (document.getElementById(id).innerHTML === '-') { document.getElementById(id).innerHTML = '▸'; }
-                else if (document.getElementById(id).innerHTML === '▸') { document.getElementById(id).innerHTML = '-'; }
+                if (cell.innerHTML === '-') { cell.innerHTML = '▸'; }
+                else if (cell.innerHTML === '▸') { cell.innerHTML = '-'; }
             });
         });
 

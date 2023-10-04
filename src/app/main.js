@@ -18,12 +18,12 @@ export const Main = () => {
                 <header>
                     <h1>Minesweeper</h1>
                 </header>
-                
+
                 {!difficulty && <ChooseDifficulty setdifficulty={UpdateDifficulty}/>}
 
                 {difficulty && <CreateBoard difficulty={difficulty} />}
 
-                {difficulty && <CreateTimer />}
+                {/*  {difficulty && <CreateTimer />} */}
             </section>
         </>
     );
