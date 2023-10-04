@@ -2,36 +2,33 @@ import { useState } from "react";
 import { ChooseDifficulty } from "./difficulty";
 import { CreateBoard } from "./board";
 import { CreateTimer } from "./timer";
+import { CreateResetButton } from "./reset";
+import { CreateTest } from "./test";
 
 export const Main = () => { 
 
-    const [difficulty, SetDifficulty] = useState(false);
+    const [gameState, SetGameState] = useState(0);
 
-    const UpdateDifficulty = (difficulty) => {
-        SetDifficulty(difficulty);
-    }
-
-    const [isGameOver, SetGameOver] = useState(false);
-
-    const UpdateGameOver = (isGameOver) => {
-        SetGameOver(isGameOver);
+    const UpdateGameState = (gameState) => {
+        SetGameState(gameState);
     }
 
     return (
         <>
-            
             <section id="main">
                 <header>
                     <h1>Minesweeper</h1>
                 </header>
 
-                {!difficulty && <ChooseDifficulty setdifficulty={UpdateDifficulty}/>}
+                {gameState === 0 ?  <ChooseDifficulty setdifficulty={UpdateGameState}/> : null}
 
-                {difficulty && <CreateBoard difficulty={difficulty} setGameOver={UpdateGameOver} />}
+                {(gameState >= 1 && gameState <=4) ? <CreateBoard difficulty={gameState} setGameState={UpdateGameState} /> : null}
 
-                {difficulty && <CreateTimer  />} 
+                {(gameState >= 1 && gameState <=4) ? <CreateTimer gameState={gameState} /> : null} 
 
-                {isGameOver && <CreateTimer  />} 
+                {(gameState >= 1 && gameState <=4) ? <CreateResetButton setGameState={UpdateGameState} /> : null} 
+
+                {/* {<CreateTest x={gameState} />} */}
 
             </section>
         </>

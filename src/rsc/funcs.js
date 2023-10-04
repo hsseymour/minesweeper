@@ -4,11 +4,11 @@ export const Random = (min, max) => {
 
 export const ConvertDifficulty = (difficulty) => {
     switch (difficulty) {
-        case 'e':
+        case '1':
             return [9, 9, 10];
-        case 'm':
+        case '2':
             return [16, 16, 40];
-        case 'h':
+        case '3':
             return [16, 30, 99];
         default:
             break;
@@ -45,6 +45,7 @@ export const CreateBoardArray = (boardData) => {
 
 export const CountNeigbours = ( {row, col, boardArray} ) => {
     let neighbours = 0;
+
     if (!boardArray[row][col]) {
         if (row !== 0) {
             if (boardArray[row-1][col] === true ) { neighbours++; }
@@ -78,50 +79,19 @@ export const CountNeigbours = ( {row, col, boardArray} ) => {
 
 export const CheckNeigbours = ({col, row, boardArray}) => { 
 
-    const CheckUp = () => {
-        if (row !== 0) {
-            let adjacent = document.getElementById(col + "-" + (row-1));
+    const Check = (conditional, col, row) => { 
+        if (conditional) {
+            let adjacent = document.getElementById((col) + "-" + row);
             if (adjacent.value === '0' && adjacent.innerHTML === '-') { 
                 adjacent.classList.add('neighbours-0', "revealedCell");
                 adjacent.innerHTML = '0';
-                CheckNeigbours({col: col, row: (row-1), boardArray: boardArray});
+                CheckNeigbours({col: (col), row: row, boardArray: boardArray});
             }
         }
-    }
-    const CheckDown = () => {
-        if (row < boardArray.length - 1) {
-            let adjacent = document.getElementById(col + "-" + (row+1));
-            if (adjacent.value === '0' && adjacent.innerHTML === '-') { 
-                adjacent.classList.add('neighbours-0', "revealedCell");
-                adjacent.innerHTML = '0';
-                CheckNeigbours({col: col, row: (row+1), boardArray: boardArray});
-            }
-        }
-    }
-    const CheckLeft = () => {
-        if (col !== 0) {
-            let adjacent = document.getElementById((col-1) + "-" + row);
-            if (adjacent.value === '0' && adjacent.innerHTML === '-') { 
-                adjacent.classList.add('neighbours-0', "revealedCell");
-                adjacent.innerHTML = '0';
-                CheckNeigbours({col: (col-1), row: row, boardArray: boardArray});
-            }
-        }
-    }
-    const CheckRight = () => {
-        if (col < boardArray[row].length - 1) {
-            let adjacent = document.getElementById((col+1) + "-" + row);
-            if (adjacent.value === '0' && adjacent.innerHTML === '-') { 
-                adjacent.classList.add('neighbours-0', "revealedCell");
-                adjacent.innerHTML = '0';
-                CheckNeigbours({col: (col+1), row: row, boardArray: boardArray});
-            }
-        }
-        // turn into check func with checkVal and searchVal
     }
 
-    CheckUp();
-    CheckDown();
-    CheckLeft();
-    CheckRight();
+    Check((row !== 0), col, (row-1)); //Check down
+    Check((row < boardArray.length - 1), col, (row+1)); //Check down
+    Check((col !== 0), (col-1), row); //Check left
+    Check((col < boardArray[row].length - 1), (col+1), row); //Check right
 }

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 
-export const CreateTimer = () => {
+export const CreateTimer = (props) => {
+    let gameState = props.gameState;
 
     useEffect(() => {
         ResetTimer();
@@ -11,7 +12,7 @@ export const CreateTimer = () => {
 
     const StartTimer = () => {
         firstTime = new Date().getTime();
-        interval = setInterval(UpdateTimer, 1);
+        interval = setInterval(UpdateTimer, 10);
     }
 
     const UpdateTimer = () => {
@@ -25,6 +26,9 @@ export const CreateTimer = () => {
         let convertedTime = LeadingZero(min) + ':' + LeadingZero(sec) + ':' + LeadingZero(mil);
 
         document.getElementById('timer').innerHTML = convertedTime;
+
+        //if (gameState === 4) { console.debug("timer stopped"); StopTimer();  }
+        //if (gameState === 0) { console.debug("timer stopped"); StopTimer();  }
     }
 
     const LeadingZero = (num) => {
