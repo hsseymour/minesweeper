@@ -82,16 +82,23 @@ export const CheckNeigbours = ({col, row, boardArray}) => {
     const Check = (conditional, col, row) => { 
         if (conditional) {
             let adjacent = document.getElementById((col) + "-" + row);
-            if (adjacent.value === '0' && adjacent.innerHTML === '-') { 
-                adjacent.classList.add('neighbours-0', "revealedCell");
-                adjacent.innerHTML = '0';
+            // if (adjacent.value === '0' && adjacent.innerHTML === '-') { 
+            if (adjacent.innerHTML === '-') { 
+                adjacent.classList.add('neighbours-' + adjacent.value, "revealedCell");
+                adjacent.innerHTML = adjacent.value;
                 CheckNeigbours({col: (col), row: row, boardArray: boardArray});
             }
         }
     }
 
-    Check((row !== 0), col, (row-1)); //Check down
-    Check((row < boardArray.length - 1), col, (row+1)); //Check down
-    Check((col !== 0), (col-1), row); //Check left
-    Check((col < boardArray[row].length - 1), (col+1), row); //Check right
+    if (document.getElementById((col) + "-" + row).value === '0'){
+        Check((row !== 0 && col !== 0), (col-1), (row-1)); //Check up left
+        Check((row !== 0), col, (row-1)); //Check up
+        Check((row !== 0 && col < boardArray[row].length - 1), (col+1), (row-1)); //Check up right
+        Check((col !== 0), (col-1), row); //Check left
+        Check((col < boardArray[row].length - 1), (col+1), row); //Check right
+        Check((row < boardArray.length - 1 && col !== 0), (col-1), (row+1)); //Check down left
+        Check((row < boardArray.length - 1), col, (row+1)); //Check down
+        Check((row < boardArray.length - 1 && col < boardArray[row].length - 1), (col+1), (row+1)); //Check down right
+    }
 }
