@@ -119,6 +119,7 @@ const CheckNeighbourValues = ({ array }) => {
   return filledArray;
 };
 
+// recieves a cell and the board array, it then performs a click on all surrounding cells (used when a black cell is expanding the revealed area)
 const ClickNeighbours = ( {cell, boardArray} ) => {
   const column = cell.column;
   const row = cell.row;
@@ -187,29 +188,29 @@ const filledBoardArray = CheckNeighbourValues ( {array: boardArrayWithMines} );
 ------------------------------------------------------------------------------------------
 */
 
-let view_grid = "\n";
-for (let i = 0; i < filledBoardArray.length; i++) {
-  for (let j = 0; j < filledBoardArray[i].length; j++) {
-    let r = (' ' + filledBoardArray[i][j].column + ',' + filledBoardArray[i][j].row + ' ' );
-    view_grid = (view_grid + r);
-  }
-  view_grid = (view_grid + '\n')
-}
+// let view_grid = "\n";
+// for (let i = 0; i < filledBoardArray.length; i++) {
+//   for (let j = 0; j < filledBoardArray[i].length; j++) {
+//     let r = (' ' + filledBoardArray[i][j].column + ',' + filledBoardArray[i][j].row + ' ' );
+//     view_grid = (view_grid + r);
+//   }
+//   view_grid = (view_grid + '\n')
+// }
 
-let view_mine = "\n";
-for (let i = 0; i < filledBoardArray.length; i++) {
-  for (let j = 0; j < filledBoardArray[i].length; j++) {
-    let r = (' ' + (filledBoardArray[i][j].isMine ? 'M' : '-') + ' ' );
-    view_mine = (view_mine + r);
-  }
-  view_mine = (view_mine + '\n');
-}
+// let view_mine = "\n";
+// for (let i = 0; i < filledBoardArray.length; i++) {
+//   for (let j = 0; j < filledBoardArray[i].length; j++) {
+//     let r = (' ' + (filledBoardArray[i][j].isMine ? 'M' : '-') + ' ' );
+//     view_mine = (view_mine + r);
+//   }
+//   view_mine = (view_mine + '\n');
+// }
 
-let view_neighbour = "\n";
-for (let i = 0; i < filledBoardArray.length; i++) {
-  for (let j = 0; j < filledBoardArray[i].length; j++) {
-    let r = (' ' + filledBoardArray[i][j].neighbours + ' ' );
-    view_neighbour = (view_neighbour + r);
-  }
-  view_neighbour = (view_neighbour + '\n');
-}
+// let view_neighbour = "\n";
+// for (let i = 0; i < filledBoardArray.length; i++) {
+//   for (let j = 0; j < filledBoardArray[i].length; j++) {
+//     let r = (' ' + filledBoardArray[i][j].neighbours + ' ' );
+//     view_neighbour = (view_neighbour + r);
+//   }
+//   view_neighbour = (view_neighbour + '\n');
+// }
