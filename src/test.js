@@ -124,19 +124,19 @@ const ClickNeighbours = ( {cell, boardArray} ) => {
   const row = cell.row;
 
   const left = (column !== 0);
-  const right = (column !== array.length-1);
+  const right = (column !== boardArray.length-1);
   const up = (row !== 0);
-  const down = (row !== array[cell.column].length-1);
+  const down = (row !== boardArray[cell.column].length-1);
 
   let neighbours = 0;
-  left ? OnCellClick( {boardArray: boardArray[column-1][row]} ) : null;
-  right ? OnCellClick( {boardArray: boardArray[column+1][row]} ) : null;
-  up ? OnCellClick( {boardArray: boardArray[column][row-1]} ) : null;
-  down ? OnCellClick( {boardArray: boardArray[column][row+1]} ) : null;
-  up && left ? OnCellClick( {boardArray: boardArray[column-1][row-1]} ) : null;
-  up && right ? OnCellClick( {boardArray: boardArray[column+1][row-1]} ) : null;
-  down && left ? OnCellClick( {boardArray: boardArray[column-1][row+1]} ) : null;
-  down && right ? OnCellClick( {boardArray: boardArray[column+1][row+1]} ) : null;
+  left ? OnCellClick( {cell: boardArray[column-1][row], boardArray} ) : null;
+  right ? OnCellClick( {cell: boardArray[column+1][row], boardArray} ) : null;
+  up ? OnCellClick( {cell: boardArray[column][row-1], boardArray} ) : null;
+  down ? OnCellClick( {cell: boardArray[column][row+1], boardArray} ) : null;
+  up && left ? OnCellClick( {cell: boardArray[column-1][row-1], boardArray} ) : null;
+  up && right ? OnCellClick( {cell: boardArray[column+1][row-1], boardArray} ) : null;
+  down && left ? OnCellClick( {cell: boardArray[column-1][row+1], boardArray} ) : null;
+  down && right ? OnCellClick( {cell: boardArray[column+1][row+1], boardArray} ) : null;
 }
 
 // function that is called when a cell is clicked
@@ -178,7 +178,8 @@ const boardArrayWithMines = PopulateMines( {array: emptyBoardArray, mineList} );
 // count neigbouring mines in each cell
 const filledBoardArray = CheckNeighbourValues ( {array: boardArrayWithMines} );
 
- filledBoardArray[1][1].clicked( {board: filledBoardArray, cell: filledBoardArray[1][1]} )
+// simulate click foramt
+ // filledBoardArray[1][1].clicked( {cell: filledBoardArray[1][1], boardArray: filledBoardArray} );
 
 /*
 ------------------------------------------------------------------------------------------
@@ -186,29 +187,29 @@ const filledBoardArray = CheckNeighbourValues ( {array: boardArrayWithMines} );
 ------------------------------------------------------------------------------------------
 */
 
-// let view_grid = "\n";
-// for (let i = 0; i < filledBoardArray.length; i++) {
-//   for (let j = 0; j < filledBoardArray[i].length; j++) {
-//     let r = (' ' + filledBoardArray[i][j].column + ',' + filledBoardArray[i][j].row + ' ' );
-//     view_grid = (view_grid + r);
-//   }
-//   view_grid = (view_grid + '\n')
-// }
+let view_grid = "\n";
+for (let i = 0; i < filledBoardArray.length; i++) {
+  for (let j = 0; j < filledBoardArray[i].length; j++) {
+    let r = (' ' + filledBoardArray[i][j].column + ',' + filledBoardArray[i][j].row + ' ' );
+    view_grid = (view_grid + r);
+  }
+  view_grid = (view_grid + '\n')
+}
 
-// let view_mine = "\n";
-// for (let i = 0; i < filledBoardArray.length; i++) {
-//   for (let j = 0; j < filledBoardArray[i].length; j++) {
-//     let r = (' ' + (filledBoardArray[i][j].isMine ? 'M' : '-') + ' ' );
-//     view_mine = (view_mine + r);
-//   }
-//   view_mine = (view_mine + '\n');
-// }
+let view_mine = "\n";
+for (let i = 0; i < filledBoardArray.length; i++) {
+  for (let j = 0; j < filledBoardArray[i].length; j++) {
+    let r = (' ' + (filledBoardArray[i][j].isMine ? 'M' : '-') + ' ' );
+    view_mine = (view_mine + r);
+  }
+  view_mine = (view_mine + '\n');
+}
 
-// let view_neighbour = "\n";
-// for (let i = 0; i < filledBoardArray.length; i++) {
-//   for (let j = 0; j < filledBoardArray[i].length; j++) {
-//     let r = (' ' + filledBoardArray[i][j].neighbours + ' ' );
-//     view_neighbour = (view_neighbour + r);
-//   }
-//   view_neighbour = (view_neighbour + '\n');
-// }
+let view_neighbour = "\n";
+for (let i = 0; i < filledBoardArray.length; i++) {
+  for (let j = 0; j < filledBoardArray[i].length; j++) {
+    let r = (' ' + filledBoardArray[i][j].neighbours + ' ' );
+    view_neighbour = (view_neighbour + r);
+  }
+  view_neighbour = (view_neighbour + '\n');
+}
