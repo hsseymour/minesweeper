@@ -96,4 +96,7 @@ body {
     margin: 20px auto;
     border: 2px solid black;
 }
+.cellFlagged-true {
+    color: black;
+}
 

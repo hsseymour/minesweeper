@@ -6,20 +6,28 @@ export const CreateCell = ( {cell, boardArray} ) => {
     },[cell]);
 
     const [buttonState, SetButtonState] = useState(false);
+    const [flagState, SetFlagState] = useState(false);
 
     return (
         <button
-            className={"boardCell cellRevealed-" + buttonState +  " cell-" + cell.neighbours}
+            className={"boardCell cellRevealed-" + buttonState +  " cell-" + cell.neighbours + " cellFlagged-" + flagState}
             type="button"
             onClick={() => {
-                console.debug(cell);
                 cell.clicked( {cell, boardArray, func: SetButtonState} );
             }}
-            disabled={buttonState}
+            onContextMenu={(e) => {
+                e.preventDefault();
+                if (!buttonState) {
+                    cell.isFlagged = !cell.isFlagged;
+                    SetFlagState(cell.isFlagged);
+                }
+            }}
+            disabled={buttonState || flagState}
         >
             {/* {cell.row},{cell.column} */}
             {/* {cell.neighbours} */}
-            {buttonState && cell.neighbours}
+            {buttonState ? cell.neighbours : flagState ? '✖' : ''}
+
         </button>
     );
 }
