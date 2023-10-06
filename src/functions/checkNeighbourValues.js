@@ -1,3 +1,5 @@
+import { CheckNeighbourCell } from './checkNeighbourCell';
+
 // recieves a board array and returns an array with neigbour values updated
 export const CheckNeighbourValues = ({ array }) => {
     const filledArray = Array.from(array);

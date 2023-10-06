@@ -10,14 +10,14 @@ export const CheckNeighbourCell = ( {array, cell} ) => {
         const down = (row !== array[cell.column].length-1);
 
         let neighbours = 0;
-        left ? (array[column-1][row].isMine ? neighbours++ : null) : null;
-        right ? (array[column+1][row].isMine ? neighbours++ : null): null;
-        up ? (array[column][row-1].isMine ? neighbours++ : null) : null;
-        down ? (array[column][row+1].isMine ? neighbours++ : null) : null;
-        up && left ? (array[column-1][row-1].isMine ? neighbours++ : null) : null;
-        up && right ? (array[column+1][row-1].isMine ? neighbours++ : null) : null;
-        down && left ? (array[column-1][row+1].isMine ? neighbours++ : null) : null;
-        down && right ? (array[column+1][row+1].isMine ? neighbours++ : null) : null;
+        if (left) { if (array[column-1][row].isMine) { neighbours++; } }
+        if (right) { if (array[column+1][row].isMine) { neighbours++; } }
+        if (up) { if (array[column][row-1].isMine) { neighbours++; } }
+        if (down) { if (array[column][row+1].isMine) { neighbours++; } }
+        if (up && left) { if (array[column-1][row-1].isMine) { neighbours++; } }
+        if (up && right) { if (array[column+1][row-1].isMine) { neighbours++; } }
+        if (down && left) { if (array[column-1][row+1].isMine) { neighbours++; } }
+        if (down && right) { if (array[column+1][row+1].isMine) { neighbours++; } }
         return neighbours;
     } else {
         return 'M';

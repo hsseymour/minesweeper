@@ -1,3 +1,5 @@
+import { ClickNeighbours } from './clickNeighbours';
+
 // function that is called when a cell is clicked
 export const OnCellClick = ( {cell, boardArray} ) => {
     if (cell.isClicked || cell.isFlagged) {

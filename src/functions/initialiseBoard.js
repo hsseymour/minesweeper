@@ -1,3 +1,9 @@
+import { Create2DBoardArray } from './create2DBoardArray';
+import { ExtractMultipleCells } from './extractMultipleCells';
+import { PopulateMines } from './populateMines';
+import { CheckNeighbourValues } from './checkNeighbourValues';
+import { OnCellClick } from './onCellClick';
+
 export const InitaliseBoard = ( {boardWidth, boardHeight, numberOfMines} ) => {
     // create a new board array filled with cell-like objects
     const emptyBoardArray = Create2DBoardArray( {w: boardWidth, h: boardHeight, clicked: OnCellClick} );

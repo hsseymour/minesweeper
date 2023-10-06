@@ -1,3 +1,6 @@
+import { ConvertTo1D } from './convertTo1D';
+import { GetRandomElementFromArray } from './getRandomElementFromArray';
+
 // recieves an array of arrays and target number of mines and returns a random array of cells
 export const ExtractMultipleCells = ({ array, mineCount }) => {
     const extractedArray = ConvertTo1D({ array });
