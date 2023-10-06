@@ -11,9 +11,9 @@ export const CreateMain = () => {
     }
 
     return (
-        <section>
+        <section className="mainSection">
             <header>
-                <h1>MineSweeper</h1>
+                <h1 className="mainH1">Minesweeper</h1>
             </header>
 
             {gameState === 0 && <CreateDifficulty setGameState={UpdateGameState} />}

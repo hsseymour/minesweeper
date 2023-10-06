@@ -10,9 +10,8 @@ export const Create2DBoardArray = ({ w, h, clicked }) => {
                     neighbours: null,
                     isRevealed: false,
                     isFlagged: false,
-                    clicked: ( {cell, boardArray} ) => {
-                    clicked( {cell, boardArray} );
-                    },
+                    clicked: ( {cell, boardArray} ) => {clicked( {cell, boardArray} ); },
+                    addfunc: null
                 };
             });
         }
