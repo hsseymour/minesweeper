@@ -1,7 +1,7 @@
 import { CreateRow } from "./createRow";
 
-export const CreateColumns = ( {columns} ) => columns.map((row, index) =>
+export const CreateColumns = ( {columns, setGameState} ) => columns.map((row, index) =>
     <tr key={index}>
-        <CreateRow row={row} boardArray={columns} />
+        <CreateRow row={row} boardArray={columns} setGameState={setGameState} />
     </tr>
 );

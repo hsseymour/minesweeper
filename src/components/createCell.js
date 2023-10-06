@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export const CreateCell = ( {cell, boardArray} ) => {
+export const CreateCell = ( {cell, boardArray, setGameState, gameState} ) => {
     useEffect(() => {
         cell.addFunc = SetButtonState;
     },[cell]);
@@ -8,12 +8,17 @@ export const CreateCell = ( {cell, boardArray} ) => {
     const [buttonState, SetButtonState] = useState(false);
     const [flagState, SetFlagState] = useState(false);
 
+    const GameOver = () => {
+        // setGameState( {gameState: 4} );
+    }
+
     return (
         <button
             className={"boardCell cellRevealed-" + buttonState +  " cell-" + cell.neighbours + " cellFlagged-" + flagState}
             type="button"
             onClick={() => {
                 cell.clicked( {cell, boardArray, func: SetButtonState} );
+                if (cell.isMine) { GameOver(); }
             }}
             onContextMenu={(e) => {
                 e.preventDefault();
@@ -22,7 +27,7 @@ export const CreateCell = ( {cell, boardArray} ) => {
                     SetFlagState(cell.isFlagged);
                 }
             }}
-            disabled={buttonState || flagState}
+            disabled={buttonState || flagState || gameState === 4}
         >
             {/* {cell.row},{cell.column} */}
             {/* {cell.neighbours} */}

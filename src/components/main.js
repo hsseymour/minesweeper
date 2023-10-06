@@ -18,9 +18,9 @@ export const CreateMain = () => {
             </header>
 
             {gameState === 0 && <CreateDifficulty setGameState={UpdateGameState} />}
-            {(gameState > 0 && gameState < 4) && <CreateBoard gameState={gameState} />}
-            {(gameState > 0 && gameState < 4) && <CreateTimer gameState={gameState} />}
-            {(gameState > 0 && gameState < 4) && <CreateReset reset={UpdateGameState} />}
+            {(gameState > 0 && gameState <= 4) && <CreateBoard gameState={gameState} setGameState={UpdateGameState} />}
+            {(gameState > 0 && gameState <= 4) && <CreateTimer gameState={gameState} />}
+            {(gameState > 0 && gameState <= 4) && <CreateReset reset={UpdateGameState} />}
             {gameState === 4}
         </section>
     )
