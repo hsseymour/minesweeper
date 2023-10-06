@@ -8,10 +8,7 @@ export const CreateMain = () => {
     const [gameState, SetGameState] = useState(0);
 
     const UpdateGameState = ( {gameState} ) => {
-
-        console.debug("before set game state: " + gameState);
         SetGameState(parseInt(gameState));
-        console.debug("after set game state: " + gameState);
     }
 
     return (
