@@ -7,9 +7,9 @@ export const CreateDifficulty = ( {setGameState} ) => {
     return (
         <div>
             <h3 className="difficultyHeader">Choose difficulty:</h3>
-            <button className="difficultyButton" value={1} onClick={(e) => UpdateGameState( {gameState: e.target.value} )}>Easy</button>
-            <button className="difficultyButton" value={2} onClick={(e) => UpdateGameState( {gameState: e.target.value} )}>Medium</button>
-            <button className="difficultyButton" value={3} onClick={(e) => UpdateGameState( {gameState: e.target.value} )}>Hard</button>
+            <button type='button' className="difficultyButton" value={1} onClick={(e) => UpdateGameState( {gameState: e.target.value} )}>Easy</button>
+            <button type='button' className="difficultyButton" value={2} onClick={(e) => UpdateGameState( {gameState: e.target.value} )}>Medium</button>
+            <button type='button' className="difficultyButton" value={3} onClick={(e) => UpdateGameState( {gameState: e.target.value} )}>Hard</button>
         </div>
     );
 }

@@ -10,8 +10,10 @@ export const CreateBoard = ( {gameState} ) => {
 
     return (
         <div>
-            <table>
-                <CreateColumns columns={boardArray} />
+            <table className="boardTable">
+                <tbody>
+                    <CreateColumns columns={boardArray} />
+                </tbody>
             </table>
         </div>
     );
