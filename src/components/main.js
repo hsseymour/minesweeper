@@ -7,6 +7,7 @@ import { GameStateContext } from "../globalManagement/gameStateContext";
 
 export const CreateMain = () => {
   const gameState = useState(0);
+  const [difficulty, setDifficulty] = useState(null);
 
   return (
     <section className="mainSection">
@@ -15,11 +16,15 @@ export const CreateMain = () => {
       </header>
 
       <GameStateContext.Provider value={gameState}>
-        {gameState[0] === 0 && <CreateDifficulty />}
-        {gameState[0] >= 1 && gameState[0] <= 3 && <CreateBoard />}
-        {gameState[0] >= 1 && gameState[0] <= 4 && <CreateTimer />}
-        {gameState[0] >= 1 && gameState[0] <= 4 && <CreateReset />}
-        {gameState === 4 && <h1>GameOver</h1>}
+        {difficulty && gameState[0] === 2 && (
+          <h1 className="gameOverH1">GameOver</h1>
+        )}
+        {gameState[0] === 0 && (
+          <CreateDifficulty setDifficulty={setDifficulty} />
+        )}
+        {difficulty && <CreateBoard difficulty={difficulty} />}
+        {difficulty && <CreateTimer />}
+        {difficulty && <CreateReset setDifficulty={setDifficulty} />}
       </GameStateContext.Provider>
     </section>
   );

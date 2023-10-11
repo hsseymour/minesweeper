@@ -22,7 +22,7 @@ export const CreateTimer = () => {
   };
 
   const UpdateTimer = () => {
-    if (gameState === 4) {
+    if (gameState === 2) {
       StopTimer();
     } else {
       const newTime = new Date().getTime();

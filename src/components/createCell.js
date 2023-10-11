@@ -25,7 +25,7 @@ export const CreateCell = ({ cell, boardArray }) => {
       onClick={() => {
         cell.clicked({ cell, boardArray, func: SetButtonState });
         if (cell.isMine) {
-          setGameState(4);
+          setGameState(2);
         }
       }}
       onContextMenu={(e) => {
