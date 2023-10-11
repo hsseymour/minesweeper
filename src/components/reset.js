@@ -1,10 +1,18 @@
-export const CreateReset = ( {reset} ) => {
+export const CreateReset = ({ reset, setGameState }) => {
+  const ResetGame = () => {
+    setGameState(null);
+    reset(0);
+  };
 
-    const ResetGame = () => {
-        reset( {gameState: 0} );
-    }
-
-    return (
-        <button className="resetButton" type="button" onClick={() => {ResetGame()} }>RESET</button>
-    );
-}
+  return (
+    <button
+      className="resetButton"
+      type="button"
+      onClick={() => {
+        ResetGame();
+      }}
+    >
+      RESET
+    </button>
+  );
+};
