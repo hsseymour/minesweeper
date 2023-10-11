@@ -1,21 +1,26 @@
+import { useContext } from "react";
+import { GameStateContext } from "../globalManagement/gameStateContext";
 import { InitaliseBoard } from "../functions/initialiseBoard";
 import { CreateColumns } from "./createColumns";
 
-export const CreateBoard = ({ difficulty, setGameState }) => {
+export const CreateBoard = () => {
+  // eslint-disable-next-line no-unused-vars
+  const [gameState, _] = useContext(GameStateContext);
+
   let setBoardArray;
-  if (+difficulty === 1) {
+  if (gameState === 1) {
     setBoardArray = InitaliseBoard({
       boardHeight: 8,
       boardWidth: 8,
       numberOfMines: 10,
     });
-  } else if (+difficulty === 2) {
+  } else if (gameState === 2) {
     setBoardArray = InitaliseBoard({
       boardHeight: 16,
       boardWidth: 16,
       numberOfMines: 40,
     });
-  } else if (+difficulty === 3) {
+  } else if (gameState === 3) {
     setBoardArray = InitaliseBoard({
       boardHeight: 30,
       boardWidth: 16,
@@ -28,7 +33,7 @@ export const CreateBoard = ({ difficulty, setGameState }) => {
     <div>
       <table className="boardTable">
         <tbody>
-          <CreateColumns columns={boardArray} setGameState={setGameState} />
+          <CreateColumns columns={boardArray} />
         </tbody>
       </table>
     </div>

@@ -1,6 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
+import { GameStateContext } from "../globalManagement/gameStateContext";
 
-export const CreateTimer = ({ getGameState }) => {
+export const CreateTimer = () => {
+  // eslint-disable-next-line no-unused-vars
+  const [gameState, _] = useContext(GameStateContext);
+
   useEffect(() => {
     ResetTimer();
     StartTimer();
@@ -18,7 +22,7 @@ export const CreateTimer = ({ getGameState }) => {
   };
 
   const UpdateTimer = () => {
-    if (getGameState() === 2) {
+    if (gameState === 4) {
       StopTimer();
     } else {
       const newTime = new Date().getTime();

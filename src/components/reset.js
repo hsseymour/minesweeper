@@ -1,7 +1,12 @@
-export const CreateReset = ({ reset, setGameState }) => {
+import { useContext } from "react";
+import { GameStateContext } from "../globalManagement/gameStateContext";
+
+export const CreateReset = () => {
+  // eslint-disable-next-line no-unused-vars
+  const [_, setGameState] = useContext(GameStateContext);
+
   const ResetGame = () => {
-    setGameState(null);
-    reset(0);
+    setGameState(0);
   };
 
   return (

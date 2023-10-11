@@ -1,8 +1,8 @@
 import { CreateRow } from "./createRow";
 
-export const CreateColumns = ({ columns, setGameState }) =>
+export const CreateColumns = ({ columns }) =>
   columns.map((row, index) => (
     <tr key={index}>
-      <CreateRow row={row} boardArray={columns} setGameState={setGameState} />
+      <CreateRow row={row} boardArray={columns} />
     </tr>
   ));

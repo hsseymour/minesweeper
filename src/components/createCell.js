@@ -1,10 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { GameStateContext } from "../globalManagement/gameStateContext";
 
-export const CreateCell = ({ cell, boardArray, setGameState }) => {
+export const CreateCell = ({ cell, boardArray }) => {
   useEffect(() => {
     cell.addFunc = SetButtonState;
   }, [cell]);
 
+  // eslint-disable-next-line no-unused-vars
+  const [_, setGameState] = useContext(GameStateContext);
   const [buttonState, SetButtonState] = useState(false);
   const [flagState, SetFlagState] = useState(false);
 
@@ -20,10 +23,9 @@ export const CreateCell = ({ cell, boardArray, setGameState }) => {
       }
       type="button"
       onClick={() => {
+        cell.clicked({ cell, boardArray, func: SetButtonState });
         if (cell.isMine) {
-          setGameState(2);
-        } else {
-          cell.clicked({ cell, boardArray, func: SetButtonState });
+          setGameState(4);
         }
       }}
       onContextMenu={(e) => {

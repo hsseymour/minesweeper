@@ -3,29 +3,24 @@ import { CreateDifficulty } from "./difficulty";
 import { CreateBoard } from "./board";
 import { CreateTimer } from "./timer";
 import { CreateReset } from "./reset";
+import { GameStateContext } from "../globalManagement/gameStateContext";
 
 export const CreateMain = () => {
-  const [difficulty, setDifficulty] = useState(null);
-  const [gameState, setGameState] = useState(1);
-
-  const getGameState = () => {
-    return gameState;
-  };
+  const gameState = useState(0);
 
   return (
     <section className="mainSection">
       <header>
         <h1 className="mainH1">Minesweeper</h1>
       </header>
-      {!difficulty && <CreateDifficulty setDifficulty={setDifficulty} />}
-      {difficulty && (
-        <CreateBoard difficulty={difficulty} setGameState={setGameState} />
-      )}
-      {difficulty && <CreateTimer getGameState={getGameState} />}
-      {difficulty && (
-        <CreateReset reset={setDifficulty} setGameState={setGameState} />
-      )}
-      {gameState === 2 && <h1>GameOver</h1>}
+
+      <GameStateContext.Provider value={gameState}>
+        {gameState[0] === 0 && <CreateDifficulty />}
+        {gameState[0] >= 1 && gameState[0] <= 3 && <CreateBoard />}
+        {gameState[0] >= 1 && gameState[0] <= 4 && <CreateTimer />}
+        {gameState[0] >= 1 && gameState[0] <= 4 && <CreateReset />}
+        {gameState === 4 && <h1>GameOver</h1>}
+      </GameStateContext.Provider>
     </section>
   );
 };

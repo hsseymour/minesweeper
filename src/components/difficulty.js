@@ -1,4 +1,10 @@
-export const CreateDifficulty = ({ setDifficulty }) => {
+import { useContext } from "react";
+import { GameStateContext } from "../globalManagement/gameStateContext";
+
+export const CreateDifficulty = () => {
+  // eslint-disable-next-line no-unused-vars
+  const [_, setGameState] = useContext(GameStateContext);
+
   return (
     <div>
       <h3 className="difficultyHeader">Choose difficulty:</h3>
@@ -6,7 +12,7 @@ export const CreateDifficulty = ({ setDifficulty }) => {
         type="button"
         className="difficultyButton"
         value={1}
-        onClick={(e) => setDifficulty(e.target.value)}
+        onClick={(e) => setGameState(+e.target.value)}
       >
         Easy
       </button>
@@ -14,7 +20,7 @@ export const CreateDifficulty = ({ setDifficulty }) => {
         type="button"
         className="difficultyButton"
         value={2}
-        onClick={(e) => setDifficulty(e.target.value)}
+        onClick={(e) => setGameState(+e.target.value)}
       >
         Medium
       </button>
@@ -22,7 +28,7 @@ export const CreateDifficulty = ({ setDifficulty }) => {
         type="button"
         className="difficultyButton"
         value={3}
-        onClick={(e) => setDifficulty(e.target.value)}
+        onClick={(e) => setGameState(+e.target.value)}
       >
         Hard
       </button>
